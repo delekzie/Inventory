@@ -1,6 +1,8 @@
 import React from 'react'
 import image1 from '../images/Hero-product1.png'
 import logo from '../images/Logo.png'
+import {NavLink, Outlet} from "react-router-dom"
+
 
 function Button ({name , height , width ,}) {
 	return (
@@ -51,25 +53,31 @@ export default function HeroSection() {
 
 	    <div className='bg leading-relaxed'>
 
-		<div className='flex justify-between items-center content-center text-white text-xl px-16'>
-				<div >
-				<ul className='flex  '>
-					<li className='px-5 cursor-pointer'>About</li>
-					<li  className='px-5 cursor-pointer'>Our product</li>
-					<li className='px-5 cursor-pointer'>Contacts</li>
-				</ul>
-					</div>
-				<div>
-				<img src={logo} alt="" />
-				</div>
-				<div>
-					<ul className='flex'>
-						<li className='px-5 cursor-pointer'>Cart</li> 
-						<li className='px-5 cursor-pointer'>Login</li> 
-						<li className='px-5 cursor-pointer'>Sign up</li> 
-					</ul>
-				</div>
-	       </div>
+		<div className="flex flex-wrap justify-between items-center content-center text-white text-xl px-6 md:px-16 py-4">
+  {/* Left Section - Links */}
+  <div className="w-full md:w-auto">
+    <ul className="flex flex-col md:flex-row md:space-x-5 space-y-2 md:space-y-0">
+      <li className="px-5 cursor-pointer">About</li>
+      <li className="px-5 cursor-pointer">Our Product</li>
+      <li className="px-5 cursor-pointer">Contacts</li>
+    </ul>
+  </div>
+
+  {/* Center Section - Logo */}
+  <div className="w-full md:w-auto flex justify-center my-4 md:my-0">
+    <img src={logo} alt="Logo" className="h-10 w-auto" />
+  </div>
+
+  {/* Right Section - Actions */}
+  <div className="w-full md:w-auto">
+    <ul className="flex flex-col md:flex-row md:space-x-5 space-y-2 md:space-y-0">
+      <li className="px-5 cursor-pointer">Cart</li>
+      <li className="px-5 cursor-pointer"><NavLink to="login">Login</NavLink></li>
+      <li className="px-5 cursor-pointer"><NavLink to="register">Sign Up</NavLink></li>
+    </ul>
+  </div>
+</div>
+
 
 			<div className='flex justify-between items-center  content-center mx-20 mt-[120px]'>
 				<div className='flex flex-col'>
@@ -82,6 +90,9 @@ export default function HeroSection() {
 			</div>
 		</div>
 		
+		<main>
+			<Outlet/>
+		</main>
 	</>
   )
 }

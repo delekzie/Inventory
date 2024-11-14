@@ -1,0 +1,40 @@
+{
+	"careers" : [
+		{
+			"id" : 1,
+			"title" : "Adventist",
+			"salary" : "45000",
+			"location" : "OYO"
+		},
+		{
+			"id" : 2,
+			"title" : "Software Developer",
+			"salary" : "445000",
+			"location" : "EDO"
+		},
+		{
+			"id" : 3,
+			"title" : "Analyst",
+			"salary" : "400000",
+			"location" : "OSUN"
+		},
+		{
+			"id" : 4,
+			"title" : "Typist",
+			"salary" : "35000",
+			"location" : "OYO"
+		},
+		{
+			"id" : 5,
+			"title" : "Web developer",
+			"salary" : "785000",
+			"location" : "CANADA"
+		},
+		{
+			"id" : 6,
+			"title" : "AZURE DEV",
+			"salary" : "999000",
+			"location" : "UNITED STATE"
+		}
+	]
+}
