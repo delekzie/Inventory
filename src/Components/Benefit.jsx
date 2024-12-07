@@ -14,9 +14,9 @@ export default function Benefit() {
   return (
 	<>
 
-      <div className='content-center' style={{backgroundColor: "#FFF2E8"}}>
-		 <h1 className='text-3xl font-semibold text-center mt-10 mb-4'>Benefit of Luxe Skincare</h1>
-		 <div className='back '>
+      <div className='content-center'>
+		 <h1 className='text-2xl lg:text-3xl font-semibold text-center mt-10 mb-4 text-blue-800'>Benefit of Luxe Skincare</h1>
+		 <div className='back text-blue-800 bg-blue-50 mx-5'>
 					<div className="relative h-[55vh] w-[720px]">
 			{/* Top-left corner */}
 			<div className="absolute top-4 left-4 flex items-center">

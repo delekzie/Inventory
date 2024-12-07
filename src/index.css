@@ -20,7 +20,7 @@
 
 .back{
   height: 60vh;
-  background-image: url("./images/cream-jar.png");
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTARNhRYFe4nCeHRJpA4sJ1o159ANQOVBGA2Q&s");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -85,7 +85,7 @@ button[type="submit"] {
   background-color: #92344C;   /* Primary button color */
   color: #fff;                 /* Text color */
   font-size: 16px;             /* Font size */
-  padding: 12px 20px;          /* Padding for better click area */
+  padding: 10px 22px;          /* Padding for better click area */
   border: none;                /* Remove default border */
   border-radius: 8px;          /* Slightly rounded corners */
   cursor: pointer;             /* Pointer cursor on hover */
