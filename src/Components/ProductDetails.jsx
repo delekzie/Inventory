@@ -6,7 +6,9 @@ import { useParams } from 'react-router-dom'
 
 export default function ProductDetails() {
 	const [details, setDetails] = useState(null)
-  const [count, setCount] = useState(1)
+  const [quantity, setQuantity] = useState(1)
+  const [message, setMessage] = useState(1)
+  
 
   const { id } = useParams()
     useEffect(() => {  
@@ -17,14 +19,11 @@ export default function ProductDetails() {
 	const productDetails = async (id) => {
 		try { 
 			  console.log("Provided ID:", id);
-
 			  const url = `http://localhost:3000/products/${id}`;
 			  const response = await axios.get(url);
 			  console.log("Result:", response);
-
 			  const data = response.data;
 			  console.log(response.data)
-
 			  setDetails(response.data)
 			  return data;
 
@@ -41,50 +40,64 @@ const getItemLocal = () => {
     
 	}
 
-
   const addToCart = async (productId, quantity) => {
-    const url = "http://localhost:3000/cart" // Replace with your API endpoint
+    const url = "http://localhost:3000/cart"; // Replace with your API endpoint
     try {
-      // Make sure productId and quantity are passed
+      // Ensure productId and quantity are provided
       if (!productId || !quantity) {
         console.error("Product ID and quantity are required.");
         return;
       }
-     const userObj = getItemLocal()
-      // Sending the POST request
+      const userObj = getItemLocal();
+      if (!userObj || !userObj._id) {
+        console.error("User ID is not defined. Ensure the user is logged in.");
+        return;
+      }
+
+  
+      // Construct the request payload
       const item = {
-         userId : userObj._id,
-         item : {
+        userId: userObj._id,
+        item: {
           productId,
-          quantity
-         }
-      } 
-      const response = await axios.post(url, item);
+          quantity,
+        },
+      };
+  
+      console.log("Request Payload:", item);
+  
+      // Make the POST request
+      const response = await axios.post(url, item, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
       console.log("Cart Response:", response);
-      // Logging the response
+  
+      // Handle the response
       const data = response.data;
       console.log("Cart Data:", data);
+      // Optionally set a success message
+       setMessage(data.message);
+       setTimeout(() => setMessage(""), 3000)
     } catch (error) {
-      // Logging error details
       console.error("Error adding to cart:", error.message);
+      if (error.response) {
+        console.error("Server Response:", error.response.data);
+      }
+      // Optionally set an error message
+      setMessage(error.message);
     }
   };
+  
 
+ 
 
-  // const Cart = ({ cart }) => {
-  //   const allCart = cart.length; 
-  //   Cart()
-  // }
-    
-//handle increament and decreament
+ 
 
-  const handleIncrease = () => {
-   setCount(prevCount => prevCount + 1)
-  }
-  const handleDecrease = () => {
-    setCount(prevCount => (prevCount > 1 ? prevCount - 1 : 1));
-  }
-
+  // Compute total price based on product price and count
+  const totalPrice = details ? details.price * quantity : 0;
 
 
 
@@ -93,11 +106,20 @@ const getItemLocal = () => {
       <div>
         {details && (
           <div>
-            <div className=" bg-blue-900 mt-10">
-              <h1 className="text-center text-3xl text-white font-light p-5">
-                Product Details
-              </h1> 
-            </div>
+            
+                      
+                <div className="mx-5 lg:mx-24 my-10 flex flex-row justify-center items-center text-center mt-32">
+                    {/* Top Border */}
+                    <div className="border-t border-blue-800 w-1/2 lg:w-1/4 my-5"></div>
+
+                    {/* Heading */}
+                    <h1 className="text-xl lg:text-3xl font-semibold text-blue-900">
+                    Product Details
+                    </h1>
+
+                    {/* Bottom Border */}
+                    <div className="border-t border-blue-800 w-1/2 lg:w-1/4 my-5"></div>
+                </div>
 
             <div className=" mt-5 mx-5 lg:mx-[300px] shadow-md p-5">
               <div className="lg:mx-10 lg:flex lg:gap-10">
@@ -107,7 +129,7 @@ const getItemLocal = () => {
                   </h2>
                   <p className="text-blue-800 font-bold mt-5 lg:mt-5 text-xl md:text-2xl">
                     {" "}
-                    &#8358; {details.price.toLocaleString("en-NG")}
+                    Price: &#8358; {totalPrice.toLocaleString("en-NG")}
                   </p>
                   <p className="mt-8 lg:mt-5 text-gray-600 text-sm md:text-xl lg:text-sm">
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit.
@@ -130,21 +152,9 @@ const getItemLocal = () => {
               </div>
 
               <div className="flex justify-between items-center my-7 lg:mx-10">
-                {/* Quantity Selector */}
-                <div className="flex flex-col justify-center items-center">
-                 
-                  <div className="flex items-center justify-between w-[120px] bg-gray-50 rounded-md shadow-md">
-                    <button onClick={handleIncrease} className="py-2 px-3 font-bold text-2xl text-blue-800 hover:text-white hover:bg-blue-800 transition-all rounded-l-md">
-                      +
-                    </button>
-                    <p className="text-lg px-3 font-bold text-blue-800">{count}</p>
-                    <button onClick={handleDecrease} className="py-2 px-3 font-bold text-2xl text-blue-800 hover:text-white hover:bg-blue-800 transition-all rounded-r-md">
-                      -
-                    </button>
-                  </div>
-                </div>
-
+               
                 {/* Buy Now Button */}
+                <h1 className='text-lg text-blue-900'>{message}</h1>
                 <button onClick={() => addToCart(id, 1)} className="bg-blue-900 text-gray-50 px-8 py-2  shadow-xl rounded-md hover:bg-blue-800 hover:shadow-2xl transition-all font-semibold text-lg">
                   Add to cart
                 </button>

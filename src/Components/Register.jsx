@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import logo from '../images/Logo.png'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
@@ -86,11 +85,12 @@ export default function Register() {
 	<>
 	<div className="container" style={containerStyle}>	
 	<div style={centerDivStyle}>
-	<img src={logo} className='w-[60px]' alt="" />
-		<h1 className='text-xl font-semibold mt-3'  >Sign Up</h1>
+
+		<h1 className='text-2xl font-semibold mt-3'  >Sign Up</h1>
 		<p className='text-sm my-1'>Enter your credentials to access the site</p>
 
-		{message && <p style={{ backgroundColor: "yellow" , padding: "5px", color: message.includes('success') ? "green" : "red" }}>{message}</p>}
+		{message && <p style={{ backgroundColor: "grey" , borderRadius: 
+		"8px", padding: "10px", color: message.includes('success') ? "green" : "red" }}>{message}</p>}
 
 		<form action="" className='form'>
     

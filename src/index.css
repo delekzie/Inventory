@@ -8,6 +8,61 @@
   box-sizing: border-box;
 }
 
+/* Basic styling for the navbar */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #333;
+  padding: 10px;
+  z-index: 1000;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+nav ul li a:hover {
+  color: #ffa500;
+}
+
+/* Style the sections */
+section {
+  padding: 100px 20px;
+  margin-top: 50px; /* Adjust to account for the navbar height */
+  background: #f4f4f4;
+  border-bottom: 1px solid #ddd;
+}
+
+section:nth-child(even) {
+  background: #e9e9e9;
+}
+
+/* Smooth scrolling effect */
+html {
+  scroll-behavior: smooth;
+}
+
+nav ul li a.active {
+  color: #ffa500;
+  font-weight: bold;
+}
+
+
 .bg{
   width: 100%; 
   height: 100vh;
@@ -20,7 +75,7 @@
 
 .back{
   height: 60vh;
-  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTARNhRYFe4nCeHRJpA4sJ1o159ANQOVBGA2Q&s");
+  background-image: url("https://www.drteals.com/wp-content/uploads/2023/05/products_sugar-scrubs-750x425.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -54,26 +109,60 @@
 }
 
 
+/* Default styling for larger screens */
 input[type="text"],
 input[type="email"],
 input[type="password"] {
   width: 400px;
-  padding: 12px 14px;
+  padding: 10px;
   margin: 8px 0;
   font-size: 14px;
   color: #333;
   background-color: #f9f9f9;
   border: 1px solid #ccc;
-  border-radius: 25px;
+  border-radius: 8px;
   outline: none;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Medium screens (tablets) */
+@media (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 80%; /* Adjust to fit smaller screens */
+    font-size: 13px; /* Slightly smaller font */
+  }
+}
+
+/* Small screens (mobile devices) */
+@media (max-width: 480px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 90%; /* Fill most of the screen width */
+    font-size: 12px; /* Smaller font for compact display */
+    padding: 8px; /* Adjust padding for smaller inputs */
+  }
+}
+
+/* Very small screens (e.g., older phones) */
+@media (max-width: 320px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 95%; /* Almost full width for very small devices */
+    font-size: 11px; /* Compact font size */
+    padding: 6px; /* Further reduce padding */
+  }
+}
+
+
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus {
-  border-color: #92344C;
-  box-shadow: 0 0 5px rgba(255, 0, 55, 0.24);
+  border-color: #1618b3;
+  box-shadow: 0 0 5px rgba(41, 15, 184, 0.24);
 }
 
 input::placeholder {
@@ -82,7 +171,7 @@ input::placeholder {
 }
 
 button[type="submit"] {
-  background-color: #92344C;   /* Primary button color */
+  background-color: #1618b3;   /* Primary button color */
   color: #fff;                 /* Text color */
   font-size: 16px;             /* Font size */
   padding: 10px 22px;          /* Padding for better click area */
@@ -94,16 +183,16 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background-color: #A03C57;   /* Slightly lighter shade on hover */
+  background-color: #5435c5;   /* Slightly lighter shade on hover */
 }
 
 button[type="submit"]:active {
-  background-color: #7F2D43;   /* Darker shade on click */
+  background-color: #374dc7;   /* Darker shade on click */
   transform: scale(0.98);      /* Slight shrink on click */
 }
 
 button[type="submit"]:focus {
-  outline: 2px solid #D4708D;  /* Outline for accessibility */
+  outline: 2px solid #5435c5;  /* Outline for accessibility */
   outline-offset: 2px;         /* Offset the outline slightly */
 }
 
